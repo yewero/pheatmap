@@ -1,10 +1,11 @@
-function (matrix, border_color, cellwidth, cellheight, tree_col, 
+heatmap_motor_new <- function (matrix, border_color, cellwidth, cellheight, tree_col, 
     tree_row, treeheight_col, treeheight_row, filename, width, 
     height, breaks, color, legend, annotation_row, annotation_col, 
     annotation_colors, annotation_legend, annotation_names_row, 
     annotation_names_col, main, fontsize, fontsize_row, fontsize_col, 
     hjust_col, vjust_col, angle_col, fmat, fontsize_number, number_color, 
-    gaps_col, gaps_row, labels_row, labels_col, ...) 
+    gaps_col, gaps_row, labels_row, labels_col, 
+    highlights_row, highlights_col, highlights_color, ...) 
 {
     lo = lo(coln = labels_col, rown = labels_row, nrow = nrow(matrix), 
         ncol = ncol(matrix), cellwidth = cellwidth, cellheight = cellheight, 
@@ -52,7 +53,8 @@ function (matrix, border_color, cellwidth, cellheight, tree_col,
             vjust_col = vjust_col, angle_col = angle_col, fmat = fmat, 
             fontsize_number = fontsize_number, number_color = number_color, 
             labels_row = labels_row, labels_col = labels_col, 
-            gaps_col = gaps_col, gaps_row = gaps_row, ...)
+            gaps_col = gaps_col, gaps_row = gaps_row, 
+            highlights_row = highlights_row, highlights_col = highlights_col, highlights_color = highlights_color, ...)
         grid.draw(gt)
         dev.off()
         return(gt)
@@ -76,6 +78,14 @@ function (matrix, border_color, cellwidth, cellheight, tree_col,
         fmat, fontsize_number, number_color)
     res = gtable_add_grob(res, elem, t = 4, l = 3, clip = "off", 
         name = "matrix")
+    ###
+    if (length(highlights_row) != 0) {
+    elem = draw_highlights(matrix, highlights_row, highlights_col, highlights_color = highlights_color, 
+        gaps_row, gaps_col)
+    res = gtable_add_grob(res, elem, t = 4, l = 3, clip = "off", 
+        name = "highlights")
+    }
+    ###
     if (length(labels_col) != 0) {
         pars = list(labels_col, gaps = gaps_col, fontsize = fontsize_col, 
             hjust_col = hjust_col, vjust_col = vjust_col, angle_col = angle_col, 
@@ -139,4 +149,5 @@ function (matrix, border_color, cellwidth, cellheight, tree_col,
     }
     return(res)
 }
+environment(heatmap_motor_new) <- asNamespace('pheatmap')
 
