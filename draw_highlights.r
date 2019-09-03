@@ -1,4 +1,4 @@
-function (matrix, highlights_rows, highlights_cols, highlights_color = "black", gaps_rows, gaps_cols) 
+draw_highlights <- function (matrix, highlights_rows, highlights_cols, highlights_color = "black", gaps_rows, gaps_cols) 
 {
   ###
   if( (length(highlights_rows)%%2 != 0) || (length(highlights_cols)%%2 != 0) ) {
