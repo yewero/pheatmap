@@ -140,7 +140,7 @@ heatmap_motor_new <- function (matrix, border_color, cellwidth, cellheight, tree
         name = "matrix")
     ###
     if (length(highlights_row) != 0) {
-    elem = draw_highlights(matrix, highlights_row, highlights_col, highlights_color = highlights_color, 
+    elem = draw_highlights(matrix, highlights_row, highlights_col, highlights_color, 
         gaps_row, gaps_col)
     res = gtable_add_grob(res, elem, t = 4, l = 3, clip = "off", 
         name = "highlights")
