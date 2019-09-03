@@ -199,7 +199,7 @@ pheatmap_new <- function (mat, color = colorRampPalette(rev(brewer.pal(n = 7,
         vjust_col = 1
     }
     #pdf(file = NULL)
-    gt = heatmap_motor(mat, border_color = border_color, cellwidth = cellwidth, 
+    gt = heatmap_motor_new(mat, border_color = border_color, cellwidth = cellwidth, 
         cellheight = cellheight, treeheight_col = treeheight_col, 
         treeheight_row = treeheight_row, tree_col = tree_col, 
         tree_row = tree_row, filename = filename, width = width, 
