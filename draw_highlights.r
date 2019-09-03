@@ -56,4 +56,5 @@ function (matrix, highlights_rows, highlights_cols, highlights_color = "black", 
   return(res)
   ###
 }
+environment(draw_highlights) <- asNamespace('pheatmap')
 
