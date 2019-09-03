@@ -40,7 +40,7 @@ heatmap_motor_new <- function (matrix, border_color, cellwidth, cellheight, tree
                 ...), bmp = function(x, ...) bmp(x, units = "in", 
                 res = 300, ...), stop("File type should be: pdf, png, bmp, jpg, tiff"))
         f(filename, height = height, width = width)
-        gt = heatmap_motor(matrix, cellwidth = cellwidth, cellheight = cellheight, 
+        gt = heatmap_motor_new(matrix, cellwidth = cellwidth, cellheight = cellheight, 
             border_color = border_color, tree_col = tree_col, 
             tree_row = tree_row, treeheight_col = treeheight_col, 
             treeheight_row = treeheight_row, breaks = breaks, 
