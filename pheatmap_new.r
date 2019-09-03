@@ -1,4 +1,4 @@
-function (mat, color = colorRampPalette(rev(brewer.pal(n = 7, 
+pheatmap_new <- function (mat, color = colorRampPalette(rev(brewer.pal(n = 7, 
     name = "RdYlBu")))(100), kmeans_k = NA, breaks = NA, border_color = "grey60", 
     cellwidth = NA, cellheight = NA, scale = "none", cluster_rows = TRUE, 
     cluster_cols = TRUE, clustering_distance_rows = "euclidean", 
@@ -16,7 +16,8 @@ function (mat, color = colorRampPalette(rev(brewer.pal(n = 7,
     number_format = "%.2f", number_color = "grey30", fontsize_number = 0.8 * 
         fontsize, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, 
     labels_col = NULL, filename = NA, width = NA, height = NA, 
-    silent = FALSE, na_col = "#DDDDDD", ...) 
+    silent = FALSE, na_col = "#DDDDDD", 
+    highlights_row = NULL, highlights_col = NULL, highlights_color = "black", ...) 
 {
     if (is.null(labels_row)) {
         labels_row = rownames(mat)
@@ -197,7 +198,7 @@ function (mat, color = colorRampPalette(rev(brewer.pal(n = 7,
         hjust_col = 0
         vjust_col = 1
     }
-    pdf(file = NULL)
+    #pdf(file = NULL)
     gt = heatmap_motor(mat, border_color = border_color, cellwidth = cellwidth, 
         cellheight = cellheight, treeheight_col = treeheight_col, 
         treeheight_row = treeheight_row, tree_col = tree_col, 
@@ -210,8 +211,9 @@ function (mat, color = colorRampPalette(rev(brewer.pal(n = 7,
         fontsize_col = fontsize_col, hjust_col = hjust_col, vjust_col = vjust_col, 
         angle_col = angle_col, fmat = fmat, fontsize_number = fontsize_number, 
         number_color = number_color, gaps_row = gaps_row, gaps_col = gaps_col, 
-        labels_row = labels_row, labels_col = labels_col, ...)
-    dev.off()
+        labels_row = labels_row, labels_col = labels_col, 
+        highlights_row = highlights_row, highlights_col = highlights_col, highlights_color = highlights_color, ...)
+    #dev.off()
     if (is.na(filename) & !silent) {
         grid.newpage()
         grid.draw(gt)
@@ -219,4 +221,5 @@ function (mat, color = colorRampPalette(rev(brewer.pal(n = 7,
     invisible(structure(list(tree_row = tree_row, tree_col = tree_col, 
         kmeans = km, gtable = gt), class = "pheatmap"))
 }
+environment(pheatmap_new) <- asNamespace('pheatmap')
 
